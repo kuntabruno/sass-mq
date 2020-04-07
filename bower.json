@@ -1,6 +1,6 @@
 {
-  "name": "sass-mq",
-  "description": "mq() is a Sass mixin that helps manipulating media queries in an elegant way.",
+  "name": "mcaskill-sass-mq",
+  "description": "mq()+ is a Sass library that helps manipulating media queries in an elegant way.",
   "keywords": [
     "responsive",
     "sass",
@@ -11,7 +11,17 @@
     "media"
   ],
   "main": "_mq.scss",
-  "author": "Guardian Media Group and contributors",
+  "authors": [
+    {
+      "name": "Chauncey McAskill",
+      "email": "chauncey@mcaskill.ca",
+      "homepage": "https://mcaskill.ca"
+    },
+    {
+      "name": "Guardian Media Group and Contributors",
+      "homepage": "https://github.com/sass-mq/sass-mq"
+    }
+  ],
   "ignore": [
     "test",
     "sassdoc",
@@ -28,6 +38,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/sass-mq/sass-mq"
+    "url": "https://github.com/mcaskill/sass-mq"
   }
 }

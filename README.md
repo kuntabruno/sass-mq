@@ -1,15 +1,26 @@
-# Media Queries with superpowers [![Build Status](https://api.travis-ci.org/sass-mq/sass-mq.svg?branch=master)](https://travis-ci.org/sass-mq/sass-mq)
+# Media Queries with superpowers [![Build Status](https://api.travis-ci.org/mcaskill/sass-mq.svg?branch=master)](https://travis-ci.org/mcaskill/sass-mq)
 
-![ ](https://avatars3.githubusercontent.com/u/9341289?v=3&s=300)
+![ ](https://raw.githubusercontent.com/mcaskill/sass-mq/master/icon.png)
 
 ----
 
-`mq()` is a [Sass](http://sass-lang.com/ "Sass - Syntactically Awesome
-Stylesheets") mixin that helps you compose media queries in an elegant
-way.
+**`mq()`+** is a [Sass](http://sass-lang.com/ "Sass - Syntactically Awesome Stylesheets") library that helps you compose media queries in an elegant way.
 
-- compiles keywords and `px`/`em` values to `em`-based queries ([a good thing](http://css-tricks.com/zooming-squishes))
-- provides fallbacks for older browsers (see [Mobile-first Responsive Web Design and IE8](http://www.theguardian.com/info/developer-blog/2013/oct/14/mobile-first-responsive-ie8) on the Guardian's developer blog).
+_Sass MQ was crafted in-house at the Guardian and is improved upon by many contributors._
+
+This fork provides various, often much-requested, enhancements over the original.
+_If you already use [@kaelig](https://github.com/kaelig)'s mixin, you know how to use MQ+._
+
+> Note: This fork is always one minor version ahead of the primary package.
+
+## Features
+
+- moved core operations from the _mixin_ to a _function_
+- this separation allows media queries to be chained through the `$and` and new `$or` parameters
+- added a `$media-feature` parameter to allow media queries to target a different feature (device dimensions, aspect ratios, color, and resolution)
+
+A variant of the mixin using [Jacket](https://github.com/at-import/jacket),
+for rasterization, can be found here: [`mj()`](https://gist.github.com/mcaskill/89944b7ef12f37c85c05).
 
 Here is a very basic example:
 
@@ -27,8 +38,11 @@ $mq-breakpoints: (
     @include mq($from: mobile, $until: tablet) {
         background: red;
     }
-    @include mq($from: tablet) {
+    @include mq($from: tablet, $or: mq($until: mobile)) {
         background: green;
+    }
+    @include mq($from: 600px, $media-feature: height) {
+        font-size: 1.25em;
     }
 }
 ```
@@ -41,29 +55,30 @@ Compiles to:
     background: red;
   }
 }
-@media (min-width: 46.25em) {
+@media (min-width: 46.25em), (max-width: 19.99em) {
   .foo {
     background: green;
   }
 }
+@media (min-height: 37.5em) {
+  .foo {
+    font-size: 125em;
+  }
+}
 ```
-
-_Sass MQ was crafted in-house at the Guardian. Today, many more companies and developers are using it in their projects: [see who uses Sass MQ](#who-uses-sass-mq)._
 
 ----
 
 
 ## How to use it
 
-Immediately play with it on [SassMeister](http://sassmeister.com/): `@import 'mq';`.
+_The original `mq()` can be played with on [SassMeister](http://sassmeister.com/): `@import 'mq';`._
 
-OR:
+1. Install with [Bower](http://bower.io/ "Bower: A package manager for the web"): `bower install mcaskill-sass-mq --save`
 
-1. Install with [Bower](http://bower.io/ "Bower: A package manager for the web"): `bower install sass-mq --save`
+    OR Install with [npm](https://www.npmjs.com/): `npm install @mcaskill/sass-mq --save` _it supports [eyeglass](https://github.com/sass-eyeglass/eyeglass)_
 
-    OR Install with [npm](https://www.npmjs.com/): `npm install sass-mq --save` _it supports [eyeglass](https://github.com/sass-eyeglass/eyeglass)_
-
-    OR [Download _mq.scss](https://raw.github.com/sass-mq/sass-mq/master/_mq.scss) to your Sass project.
+    OR [Download _mq.scss](https://raw.github.com/mcaskill/sass-mq/master/_mq.scss) to your Sass project.
 
 2. Import the partial in your Sass files and override default settings
    with your own preferences before the file is imported:
@@ -108,9 +123,12 @@ OR:
 
 `mq()` takes up to three optional parameters:
 
-- `$from`: _inclusive_ `min-width` boundary
-- `$until`: _exclusive_ `max-width` boundary
+- `$from`: _inclusive_ `min-*` boundary
+- `$until`: _exclusive_ `max-*` boundary
 - `$and`: additional custom directives
+- `$or`: alternate custom directives
+- `$media-feature`: either `width` or `height` of the output device's
+  rendering surface
 
 Note that `$until` as a keyword is a hard limit i.e. it's breakpoint - 1.
 
@@ -198,6 +216,8 @@ reference so you can use the notation that best matches your needs:
     $from: false,
     $until: desktop,
     $and: false,
+    $or: false
+    $media-feature: width,
     $media-type: $mq-media-type // defaults to 'all'
 ) {
     .foo {}
@@ -208,6 +228,8 @@ reference so you can use the notation that best matches your needs:
     false,
     desktop,
     false,
+    false,
+    width,
     $mq-media-type
 ) {
     .foo {}
@@ -238,20 +260,10 @@ reference so you can use the notation that best matches your needs:
 }
 ```
 
-### Seeing the currently active breakpoint
-
-While developing, it can be nice to always know which breakpoint is
-active. To achieve this, set the `$mq-show-breakpoints` variable to
-be a list of the breakpoints you want to debug, ordered by width.
-The name of the active breakpoint and its pixel and em values will
-then be shown in the top right corner of the viewport.
-
-![$mq-show-breakpoints](https://raw.githubusercontent.com/sass-mq/sass-mq/master/show-breakpoints.gif)
-
 ### Changing media type
 
 If you want to specify a media type, for example to output styles
-for screens only, set `$mq-media-type`:
+for screens only, set `$mq-media-type`. Alternatively, `mq()` takes an optional `$media-type` parameter for specific types:
 
 #### SCSS
 
@@ -261,6 +273,10 @@ $mq-media-type: screen;
 .screen-only-element {
     @include mq(mobile) {
         width: 300px;
+    }
+
+    @include mq($media-type: print) {
+        display: none;
     }
 }
 ```
@@ -273,7 +289,23 @@ $mq-media-type: screen;
         width: 300px;
     }
 }
+
+@media print {
+    .screen-only-element {
+        display: none;
+    }
+}
 ```
+
+### Seeing the currently active breakpoint
+
+While developing, it can be nice to always know which breakpoint is
+active. To achieve this, set the `$mq-show-breakpoints` variable to
+be a list of the breakpoints you want to debug, ordered by width.
+The name of the active breakpoint and its pixel and em values will
+then be shown in the top right corner of the viewport.
+
+![$mq-show-breakpoints](https://raw.githubusercontent.com/mcaskill/sass-mq/master/show-breakpoints.gif)
 
 ## Running tests
 
@@ -291,7 +323,7 @@ Generate the documentation locally:
 sassdoc .
 ```
 
-Generate & deploy the documentation to <http://sass-mq.github.io/sass-mq/>:
+Generate & deploy the documentation to <https://mcaskill.github.io/sass-mq/>:
 
 ```sh
 npm run sassdoc
@@ -309,33 +341,3 @@ npm run sassdoc
 - <http://nicolasgallagher.com/mobile-first-css-sass-and-ie/>
 - <http://cognition.happycog.com/article/fall-back-to-the-cascade>
 - <http://www.theguardian.com/info/developer-blog/2013/oct/14/mobile-first-responsive-ie8>
-
-## Who uses Sass MQ?
-
-Sass MQ was developed in-house at [the Guardian](http://www.theguardian.com/).
-
-These companies and projects use Sass MQ:
-
-- The Guardian
-- BBC (Homepage, Sport, News, Programmes)
-- The Financial Times
-- [Rightmove](http://www.rightmove.co.uk/)
-- [Stockholm International Fairs and Congress Centre](http://stockholmsmassan.se/?sc_lang=en)
-- [Beyond](https://bynd.com/)
-- [EQ Design](http://eqdesign.co.uk/)
-- [Baseguide](http://basegui.de/)
-- [Base Creative](http://www.basecreative.co.uk/)
-- [Locomotive](http://locomotive.ca/)
-- [Le Figaro](http://tvmag.lefigaro.fr/) (TV Mag)
-- [LunaWeb](http://www.lunaweb.fr)
-- [inuitcss](https://github.com/inuitcss/inuitcss)
-- [Hotelbeds Group](http://group.hotelbeds.com/)
-- [Beneš & Michl](http://www.benes-michl.cz)
-- [Manchester International Festival](http://mif.co.uk/)
-- [Shopify Polaris](https://polaris.shopify.com)
-- You? [Open an issue](https://github.com/sass-mq/sass-mq/issues/new?title=My%20company%20uses%20Sass%20MQ&body=Hi,%20we%27re%20using%20Sass%20MQ%20at%20[name%20of%20your%20company]%20and%20we%27d%20like%20to%20be%20mentionned%20in%20the%20README%20of%20the%20project.%20Cheers!)
-
-----
-
-Looking for a more advanced sass-mq, with support for height and other niceties?  
-Give [@mcaskill's fork of sass-mq](https://github.com/mcaskill/sass-mq) a try.
