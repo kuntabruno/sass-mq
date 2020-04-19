@@ -1,8 +1,8 @@
-# Media Queries with superpowers [![Build Status](https://api.travis-ci.org/mcaskill/sass-mq.svg?branch=master)](https://travis-ci.org/mcaskill/sass-mq)
+<div align="center">
+	<img width="300" height="300" src="https://raw.githubusercontent.com/mcaskill/sass-mq/master/icon.png" alt="Awesome">
+</div>
 
-![ ](https://raw.githubusercontent.com/mcaskill/sass-mq/master/icon.png)
-
-----
+# Media Queries with superpowers [![Build Status](https://api.travis-ci.org/mcaskill/sass-mq.svg?branch=master)](https://travis-ci.org/sass-mq/sass-mq)
 
 **`mq()`+** is a [Sass](http://sass-lang.com/ "Sass - Syntactically Awesome Stylesheets") library that helps you compose media queries in an elegant way.
 
@@ -67,18 +67,18 @@ Compiles to:
 }
 ```
 
-----
-
+_Sass MQ was crafted in-house at the Guardian. Today, many more companies and developers are using it in their projects: [see who uses Sass MQ](#who-uses-sass-mq)._
 
 ## How to use it
 
 _The original `mq()` can be played with on [SassMeister](http://sassmeister.com/): `@import 'mq';`._
 
-1. Install with [Bower](http://bower.io/ "Bower: A package manager for the web"): `bower install mcaskill-sass-mq --save`
+1. Install:
+    - with [Bower](http://bower.io/ "Bower: A package manager for the web"): `bower install mcaskill-sass-mq --save`
+    - with [npm](https://www.npmjs.com/): `npm install @mcaskill/sass-mq --save` _supports [eyeglass](https://github.com/sass-eyeglass/eyeglass)_
+    - with [yarn](https://www.yarnpkg.com/): `yarn add @mcaskill/sass-mq` _supports [eyeglass](https://github.com/sass-eyeglass/eyeglass)_
 
-    OR Install with [npm](https://www.npmjs.com/): `npm install @mcaskill/sass-mq --save` _it supports [eyeglass](https://github.com/sass-eyeglass/eyeglass)_
-
-    OR [Download _mq.scss](https://raw.github.com/mcaskill/sass-mq/master/_mq.scss) to your Sass project.
+    OR [Download _mq.scss](https://raw.github.com/mcaskill/sass-mq/master/_mq.scss) into your Sass project.
 
 2. Import the partial in your Sass files and override default settings
    with your own preferences before the file is imported:
@@ -105,17 +105,20 @@ _The original `mq()` can be played with on [SassMeister](http://sassmeister.com/
 
     // Define the breakpoint from the $mq-breakpoints list that should
     // be used as the target width when outputting a static stylesheet
-    // (i.e. when $mq-responsive is set to 'false').
+    // (when $mq-responsive is set to 'false').
     $mq-static-breakpoint: desktop;
 
     // If you want to display the currently active breakpoint in the top
     // right corner of your site during development, add the breakpoints
-    // to this list, ordered by width, e.g. (mobile, tablet, desktop).
+    // to this list, ordered by width. For example: (mobile, tablet, desktop).
     $mq-show-breakpoints: (mobile, mobileLandscape, tablet, desktop, wide);
 
+    // If _mq.scss is in your project:
     @import 'path/to/mq';
     // With eyeglass:
-    // @import 'sass-mq';
+    @import '@mcaskill/sass-mq';
+    // With webpack (and boilerplates such as create-react-app)
+    @import '~@mcaskill/sass-mq';
     ```
 3. Play around with `mq()` (see below)
 
@@ -203,7 +206,7 @@ $mq-static-breakpoint: desktop;
 
 ### Verbose and shortand notations
 
-Sometimes you’ll want to be extra verbose (e.g. if you’re developing a
+Sometimes you’ll want to be extra verbose (for example, if you’re developing a
 library based on top of sass-mq), however for readability in a codebase,
 the shorthand notation is recommended.
 
@@ -305,7 +308,12 @@ be a list of the breakpoints you want to debug, ordered by width.
 The name of the active breakpoint and its pixel and em values will
 then be shown in the top right corner of the viewport.
 
-![$mq-show-breakpoints](https://raw.githubusercontent.com/mcaskill/sass-mq/master/show-breakpoints.gif)
+```scss
+// Adapt the list to include breakpoint names from your project
+$mq-show-breakpoints: (phone, phablet, tablet);
+```
+
+![$mq-show-breakpoints](https://raw.githubusercontent.com/sass-mq/sass-mq/master/show-breakpoints.gif)
 
 ## Running tests
 

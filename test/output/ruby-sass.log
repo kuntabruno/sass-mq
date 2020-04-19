@@ -1,51 +1,67 @@
 WARNING: Assuming 640 to be in pixels, attempting to convert it into pixels.
-         on line 90 of _mq.scss, in `mq-px2em'
-         from line 134 of _mq.scss, in `mq-parse-breakpoint'
-         from line 223 of _mq.scss, in `mq'
-         from line 359 of _mq.scss, in `mq'
+         on line 106 of _mq.scss, in `mq-px2em'
+         from line 150 of _mq.scss, in `mq-parse-breakpoint'
+         from line 239 of _mq.scss, in `mq'
+         from line 375 of _mq.scss, in `mq'
          from line 17 of test/_after-import.scss, in `styles'
          from line 117 of test/_after-import.scss
          from line 6 of test/test.scss
 
 WARNING: Assuming 768 to be in pixels, attempting to convert it into pixels.
-         on line 90 of _mq.scss, in `mq-px2em'
-         from line 134 of _mq.scss, in `mq-parse-breakpoint'
-         from line 223 of _mq.scss, in `mq'
-         from line 359 of _mq.scss, in `mq'
+         on line 106 of _mq.scss, in `mq-px2em'
+         from line 150 of _mq.scss, in `mq-parse-breakpoint'
+         from line 239 of _mq.scss, in `mq'
+         from line 375 of _mq.scss, in `mq'
          from line 37 of test/_after-import.scss, in `styles'
          from line 117 of test/_after-import.scss
          from line 6 of test/test.scss
 
 WARNING: Assuming 1023 to be in pixels, attempting to convert it into pixels.
-         on line 90 of _mq.scss, in `mq-px2em'
-         from line 134 of _mq.scss, in `mq-parse-breakpoint'
-         from line 228 of _mq.scss, in `mq'
-         from line 359 of _mq.scss, in `mq'
+         on line 106 of _mq.scss, in `mq-px2em'
+         from line 150 of _mq.scss, in `mq-parse-breakpoint'
+         from line 244 of _mq.scss, in `mq'
+         from line 375 of _mq.scss, in `mq'
          from line 37 of test/_after-import.scss, in `styles'
          from line 117 of test/_after-import.scss
          from line 6 of test/test.scss
 
 WARNING: Assuming 640 to be in pixels, attempting to convert it into pixels.
-         on line 90 of _mq.scss, in `mq-px2em'
-         from line 134 of _mq.scss, in `mq-parse-breakpoint'
-         from line 333 of _mq.scss, in `mq'
+         on line 106 of _mq.scss, in `mq-px2em'
+         from line 150 of _mq.scss, in `mq-parse-breakpoint'
+         from line 349 of _mq.scss, in `mq'
          from line 17 of test/_after-import.scss, in `styles'
          from line 126 of test/_after-import.scss
          from line 6 of test/test.scss
 
 WARNING: Assuming 768 to be in pixels, attempting to convert it into pixels.
-         on line 90 of _mq.scss, in `mq-px2em'
-         from line 134 of _mq.scss, in `mq-parse-breakpoint'
-         from line 333 of _mq.scss, in `mq'
+         on line 106 of _mq.scss, in `mq-px2em'
+         from line 150 of _mq.scss, in `mq-parse-breakpoint'
+         from line 349 of _mq.scss, in `mq'
          from line 37 of test/_after-import.scss, in `styles'
          from line 126 of test/_after-import.scss
          from line 6 of test/test.scss
 
 WARNING: Assuming 1023 to be in pixels, attempting to convert it into pixels.
-         on line 90 of _mq.scss, in `mq-px2em'
-         from line 134 of _mq.scss, in `mq-parse-breakpoint'
-         from line 338 of _mq.scss, in `mq'
+         on line 106 of _mq.scss, in `mq-px2em'
+         from line 150 of _mq.scss, in `mq-parse-breakpoint'
+         from line 354 of _mq.scss, in `mq'
          from line 37 of test/_after-import.scss, in `styles'
          from line 126 of test/_after-import.scss
+         from line 6 of test/test.scss
+
+WARNING: Overriding $mq-base-font-size will break things, see https://github.com/sass-mq/sass-mq/issues/122.
+         on line 100 of _mq.scss, in `mq-px2em'
+         from line 152 of _mq.scss, in `mq-parse-breakpoint'
+         from line 239 of _mq.scss, in `mq'
+         from line 375 of _mq.scss, in `mq'
+         from line 170 of test/_after-import.scss
+         from line 6 of test/test.scss
+
+WARNING: The $base-font-size argument will be removed in sass-mq v6.0.0, as overriding it breaks things, see https://github.com/sass-mq/sass-mq/issues/122.
+         on line 103 of _mq.scss, in `mq-px2em'
+         from line 152 of _mq.scss, in `mq-parse-breakpoint'
+         from line 239 of _mq.scss, in `mq'
+         from line 375 of _mq.scss, in `mq'
+         from line 170 of test/_after-import.scss
          from line 6 of test/test.scss
 
