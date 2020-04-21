@@ -2,7 +2,7 @@
 	<img width="300" height="300" src="https://raw.githubusercontent.com/mcaskill/sass-mq/master/icon.png" alt="Awesome">
 </div>
 
-# Media Queries with superpowers [![Build Status](https://api.travis-ci.org/mcaskill/sass-mq.svg?branch=master)](https://travis-ci.org/sass-mq/sass-mq)
+# Media Queries with superpowers [![Build Status](https://api.travis-ci.org/mcaskill/sass-mq.svg?branch=master)](https://travis-ci.org/mcaskill/sass-mq)
 
 **`mq()`+** is a [Sass](http://sass-lang.com/ "Sass - Syntactically Awesome Stylesheets") library that helps you compose media queries in an elegant way.
 
@@ -249,7 +249,7 @@ reference so you can use the notation that best matches your needs:
 }
 ```
 
-[See the detailed API documentation](http://sass-mq.github.io/sass-mq/#undefined-mixin-mq)
+[See the detailed API documentation](https://mcaskill.github.io/sass-mq/#undefined-mixin-mq)
 
 ### Adding custom breakpoints
 
@@ -313,7 +313,7 @@ then be shown in the top right corner of the viewport.
 $mq-show-breakpoints: (phone, phablet, tablet);
 ```
 
-![$mq-show-breakpoints](https://raw.githubusercontent.com/sass-mq/sass-mq/master/show-breakpoints.gif)
+![$mq-show-breakpoints](https://raw.githubusercontent.com/mcaskill/sass-mq/master/show-breakpoints.gif)
 
 ## Running tests
 
