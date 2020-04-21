@@ -11,7 +11,7 @@ _Sass MQ was crafted in-house at the Guardian and is improved upon by many contr
 This fork provides various, often much-requested, enhancements over the original.
 _If you already use [@kaelig](https://github.com/kaelig)'s mixin, you know how to use MQ+._
 
-> Note: This fork is always one minor version ahead of the primary package.
+> Note: This fork replaces the latest version of the original package.
 
 ## Features
 
